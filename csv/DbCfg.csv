@@ -1,0 +1,9 @@
+dbname,ip,dbport,dbusername,dbpwd,maxopenconns,maxidleconns,readnum,writenum,char_set
+string,string,string,string,string,int,int,int8,int8,string
+#数据库名称,ip地址,端口号,用户名,密码,最大链接数,闲置连接数,读协程数量,写协程数量,字符集
+game_statisticsdb,127.0.0.1,3306,root,123456,2000,1000,0,4,utf8mb4
+mysql,127.0.0.1,3306,root,123456,2000,1000,2,2,utf8mb4
+accountdb,127.0.0.1,3306,root,123456,2000,1000,5,5,utf8mb4
+accountlog,127.0.0.1,3306,root,123456,2000,1000,0,4,utf8mb4
+gamedb,127.0.0.1,3306,root,123456,2000,1000,5,5,utf8mb4
+gamelogdb,127.0.0.1,3306,root,123456,2000,1000,0,4,utf8mb4

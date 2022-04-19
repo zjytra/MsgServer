@@ -1,0 +1,1 @@
+start wengoApp.exe  -AppID=20002

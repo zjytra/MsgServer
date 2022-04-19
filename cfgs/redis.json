@@ -1,0 +1,18 @@
+{
+  "RedisConfigs" : [
+    {
+      "clientName": "zjy1",
+      "IP" : "127.0.0.1",
+      "dbport" : "6379",
+      "dbpwd" : "",
+      "ismaster" : true
+    },
+    {
+      "clientName": "redis1",
+      "IP" : "127.0.0.1",
+      "dbport" : "6379",
+      "dbpwd" : "",
+      "ismaster" : false
+    }
+  ]
+}

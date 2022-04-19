@@ -1,0 +1,4 @@
+id,mapname,navmeshres
+int,string,string
+#地图id,地图名字,寻路资源
+1,新手村,xinshou.nav
