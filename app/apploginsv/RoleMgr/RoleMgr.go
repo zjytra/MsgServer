@@ -61,3 +61,12 @@ func SetAsyncCreate(roleName string) {
 func DelAsyncCreate(roleName string) {
 	delete(asyncCreate,roleName)
 }
+
+
+func GetNameRole(roleName string)*dbmodels.RoleT{
+ 	role,ok := nameRoles[roleName]
+	if ok {
+		return role
+	}
+	return nil
+}

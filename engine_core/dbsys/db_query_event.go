@@ -53,7 +53,7 @@ type DBQueryResult struct {
 }
 
 //数据库线程直接查询返回结构体不过结构体的要与数据库表字段匹配
-type OnDBQueryCB func(param  *DBQueryParam,result *DBQueryResult) error
+type OnDBQueryCB func(param  *DBQueryParam,result *DBQueryResult)
 
 type DBQueryEvent struct {
 	queryType int
@@ -85,7 +85,7 @@ func (this *DBQueryEvent) Execute(){
 		//queryParamPool.Put(this.param)
 		//queryEventPool.Put(this)
 		//return err
-
+		defer rows.Close()
 		//处理的方式
 		switch this.queryType {
 		case DBQueryRowsCB_Event:
@@ -94,12 +94,10 @@ func (this *DBQueryEvent) Execute(){
 			this.result.QueryObj = RowToStruct(rows, this.param.ReflectObj)
 		case DBQueryRowsToStructSliceCb_Event:
 			this.result.Objs = RowsToStructSlice(rows, this.param.ReflectObj)
-			rows.Close()
 		case DBQueryRowToMapCb_Event:
 			this.result.MapRow = RowToMap(rows)
 		case DBQueryRowsToMapArrCb_Event:
 			this.result.MapRowS = RowsToStrMapArr(rows)
-			rows.Close()
 		case DBQueryMoreReusltMapCb_Event:
 			this.result.MoreMapRowS = MoreResultRowsToStrMapArr(rows)
 		case DBQueryMoreReusltStructArrCb_Event:

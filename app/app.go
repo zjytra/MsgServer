@@ -18,6 +18,8 @@ import (
 	"github.com/zjytra/MsgServer/engine_core/xengine"
 	"github.com/zjytra/MsgServer/engine_core/xlog"
 	"github.com/zjytra/MsgServer/model"
+	"net/http"
+	_ "net/http/pprof"
 	"time"
 )
 
@@ -100,6 +102,13 @@ func (this *App)CreateAppBehavior() {
 	// //读取控制台命令 测试的时候才用
 	// this.AppWG.Add(1)
 	// go this.ReadConsole()
+	go func() {
+		ip := ":30003"
+		erro := http.ListenAndServe(ip,nil)
+		if erro != nil {
+			fmt.Printf("%v",erro)
+		}
+	}()
 }
 
 

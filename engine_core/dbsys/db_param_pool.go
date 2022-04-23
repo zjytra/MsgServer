@@ -27,7 +27,7 @@ var (
 )
 
 ////数据库执行返回
-type DBExecuteCallback func(dbResult  *DBWriteCb) error
+type DBExecuteCallback func(dbResult  *DBWriteCb)
 
 func init()  {
 	dbParamPool.New = func() interface{} {

@@ -10,6 +10,7 @@ package dbmodels
 import (
 	"github.com/zjytra/MsgServer/engine_core/dbsys"
 	"github.com/zjytra/MsgServer/protomsg"
+	"github.com/zjytra/MsgServer/wordfilter"
 )
 
 type MsgT struct {
@@ -34,7 +35,7 @@ func (this *MsgT)GetUID() int64 {
 
 func (this *MsgT)BuildPro(msgPro *protomsg.MsgInfo)  {
 	msgPro.RoomID = this.RoomID.GetVal()
-	msgPro.Conent = this.MsgContent.GetVal()
+	msgPro.Conent = wordfilter.FilterChack(this.MsgContent.GetVal())
 	msgPro.RoleName = this.SenderName.GetVal()
 	msgPro.SendTime = this.CreateTime.GetVal()
 }

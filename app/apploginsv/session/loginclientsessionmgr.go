@@ -15,6 +15,7 @@ import (
 	"github.com/zjytra/MsgServer/dbmodels"
 	"github.com/zjytra/MsgServer/devlop/xutil/mathutil"
 	"github.com/zjytra/MsgServer/devlop/xutil/timeutil"
+	"github.com/zjytra/MsgServer/engine_core/dbsys"
 	"github.com/zjytra/MsgServer/engine_core/network"
 	"github.com/zjytra/MsgServer/engine_core/xlog"
 )
@@ -135,6 +136,10 @@ func (this *LoginClientSessionMgr) RemoveClientSession(connid uint32){
 		AccountMgr.DelAccount(session.PAcc.LoginName.GetVal())
 	}
 	if session.PRole != nil  {
+		session.PRole.OffLineTime.SetVal(timeutil.GetCurrentTimeMs())
+		updateRole := new(dbsys.DBObjWriteParam)
+		updateRole.AddObjs(session.PRole)
+		dbsys.GameAccountDB.AsyncUpdateObj(updateRole, nil)
 		RoleMgr.Remove(session.PRole)
 		RoomMgr.OnRoleLeave(connid,session.PRole.RoomID.GetVal())
 	}

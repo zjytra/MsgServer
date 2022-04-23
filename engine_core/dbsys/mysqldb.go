@@ -169,7 +169,6 @@ func RowToStringSlice(rows *sql.Rows) []string{
 
 //将单行查询的结果转换为map key=字段名称
 func RowToMap(rows *sql.Rows) map[string]string{
-	defer rows.Close()
 	columns, erro, columnsCount := CheckOneRow("RowToMap",rows)
 	if erro != nil || columnsCount == 0 {
 		return nil
@@ -236,7 +235,6 @@ func RowsToStrMapArr(rows *sql.Rows) []map[string]string{
 
 //多个结果集,多行查询转换为map数组,其中一行去slice下表map[表明第几个结果集]gamemap[数据库字段名称]字段值
 func MoreResultRowsToStrMapArr(rows *sql.Rows) map[int][]map[string]string{
-	defer rows.Close()
 	allRes :=make(map[int][]map[string]string)
 	oneResult := RowsToStrMapArr(rows)
 	i := 1
@@ -277,7 +275,6 @@ func CheckOneRow(funName string,rows *sql.Rows) ([]string, error, int) {
 //@param to 结构体模型
 //@param rows 数据库查询结果
 func RowToStruct(rows *sql.Rows, to interface{}) interface{} {
-	defer rows.Close()
 	if rows == nil{
 		xlog.Error("RowToStruct rows is nil ")
 		return nil
@@ -319,7 +316,7 @@ func RowToStruct(rows *sql.Rows, to interface{}) interface{} {
 		}
 	}
 
-	return val
+	return val.Interface()
 }
 
 
@@ -388,7 +385,6 @@ func RowsToStructSlice(rows *sql.Rows,to interface{})[]interface{}{
 //@param to 可以是结构体类型 也可以是指针类型,主要创建实例使用
 //@return []interface{}  遍历时必须用指针断言
 func MoreResultRowsToStructArr(rows *sql.Rows,toArr []interface{})map[int][]interface{}  {
-	defer rows.Close()
 	if rows == nil{
 		xlog.Error("RowsToStructSlice rows is nil ")
 		return nil

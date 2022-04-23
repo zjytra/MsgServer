@@ -23,6 +23,7 @@ type RoleT struct {
 	LonginTime dbsys.DBInt64  `node:"登录时间"`
 	OnlineTime dbsys.DBInt64  `node:"在线时长"`
 	RoomID dbsys.DBInt32  `node:"房间id" `
+	OffLineTime dbsys.DBInt64  `node:"离线时间"`
 }
 
 
@@ -46,7 +47,7 @@ func (this RoleT)BuildRolePro(pro *protomsg.L2C_LoginMsg)  {
 	pro.RoomID = this.RoomID.GetVal()
 }
 
-func (this *RoleT)GetOnlineTile() int64  {
+func (this *RoleT)GetOnlineTime() int64  {
 	this.OnlineTime.SetVal(timeutil.GetCurrentTimeMs() - this.LonginTime.GetVal())
 	return this.OnlineTime.GetVal()
 }

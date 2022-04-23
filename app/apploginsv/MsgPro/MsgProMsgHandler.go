@@ -11,14 +11,17 @@ package MsgPro
 import (
 	"github.com/golang/protobuf/proto"
 	"github.com/zjytra/MsgServer/Cmd"
+	"github.com/zjytra/MsgServer/app/apploginsv/RoleMgr"
 	"github.com/zjytra/MsgServer/app/apploginsv/RoomMgr"
 	"github.com/zjytra/MsgServer/app/apploginsv/session"
 	"github.com/zjytra/MsgServer/dbmodels"
+	"github.com/zjytra/MsgServer/devlop/xutil/strutil"
 	"github.com/zjytra/MsgServer/devlop/xutil/timeutil"
 	"github.com/zjytra/MsgServer/engine_core/dbsys"
 	"github.com/zjytra/MsgServer/engine_core/network"
 	"github.com/zjytra/MsgServer/engine_core/snowflake"
 	"github.com/zjytra/MsgServer/engine_core/xlog"
+	"github.com/zjytra/MsgServer/msgcode"
 	"github.com/zjytra/MsgServer/protomsg"
 )
 
@@ -46,8 +49,12 @@ func C2L_SendMsgReq(conn network.Conner, msgdata []byte) {
 	msg.MsgContent.SetVal(reqMsg.Conent)
 	msg.SenderName.SetVal(clSession.PRole.RoleName.GetVal())
 	RoomMgr.AddMsg(msg)
-	//延迟插入
-	dbsys.GameAccountDB.DelayInsert(msg)
+	writerParam := &dbsys.DBObjWriteParam{
+		ClientConnId: conn.GetConnID(),
+		ParamObj:     reqMsg,
+	}
+	writerParam.AddObjs(msg)
+	dbsys.GameAccountDB.AsyncInsertObj(writerParam,nil)
 	sendMsg := &protomsg.L2C_SendMsgRes{}
 	sendMsg.MsgInfo = new(protomsg.MsgInfo)
 	msg.BuildPro(sendMsg.MsgInfo)
@@ -79,10 +86,16 @@ func C2L_GetRoomMsgListReq(conn network.Conner, msgdata []byte) {
 	}
 	sendMsg := &protomsg.L2C_GetRoomMsgListRes{}
 	sendMsg.RoomID = reqMsg.RoomID
-	for _,msg := range msgs {
+	j := 0
+	i := len(msgs) - 1 //到着遍历最新50条
+	for  ;i >= 0 ; i -- {
 		msgPro := new(protomsg.MsgInfo)
-		msg.BuildPro(msgPro)
+		msgs[i].BuildPro(msgPro)
 		sendMsg.Msgs = append(sendMsg.Msgs,msgPro)
+		j ++
+		if j >= 50 {
+			break
+		}
 	}
 
 	conn.WritePBToMsgRes(Cmd.L2C_GetRoomMsgListRes,sendMsg)
@@ -94,8 +107,64 @@ func C2L_GetRoleInfoReq(conn network.Conner, msgdata []byte) {
 	erro := proto.Unmarshal(msgdata, reqMsg)
 	if erro != nil {
 		xlog.Debug("C2L_GetRoleInfoReq 错误:" + erro.Error())
+		conn.Close()
 		return
 	}
+	sendMsg := &protomsg.L2C_GetUserInfoRes{}
+	//账号包含空格或者非单词字符
+	isMatch := strutil.StringHasSpaceOrSpecialChar(reqMsg.RoleName)
+	if isMatch {
+		conn.WritePBMsgAndCode(Cmd.L2C_GetUserInfoRes, msgcode.RoleNameError, sendMsg)
+		return
+	}
+	//sql注入验证
+	isMatch = strutil.StringHasSqlKey(reqMsg.RoleName)
+	if isMatch {
+		conn.WritePBMsgAndCode(Cmd.L2C_GetUserInfoRes, msgcode.RoleNameError, sendMsg)
+		return
+	}
+	pRole := RoleMgr.GetNameRole(reqMsg.RoleName)
+	if pRole != nil {
+		sendMsg.RoleName = pRole.RoleName.GetVal()
+		sendMsg.LoginTime = pRole.LonginTime.GetVal()
+		sendMsg.OnlineTime = pRole.GetOnlineTime()
+		sendMsg.RoomID = pRole.RoomID.GetVal()
+		//内存中有数据直接返回
+		conn.WritePBToMsgRes(Cmd.L2C_GetUserInfoRes, sendMsg)
+		return
+	}
+	dbParam := new(dbsys.DBParam)
+	dbParam.CltConn = conn.GetConnID()
+	//框架还待完善,由于角色表的查询字段被账号id占了,只有用原来封装的接口了
+	sql := "SELECT RoleName,LonginTime,OnlineTime,RoomID,OffLineTime FROM RoleT WHERE RoleName = ?"
+	dbsys.GameAccountDB.AsyncQueryStruct(dbParam,dbmodels.QueryRole{},onQueryRoleCb,sql,reqMsg.RoleName)
+
+}
+
+func onQueryRoleCb(param  *dbsys.DBQueryParam,result *dbsys.DBQueryResult)  {
+	if param == nil {
+		xlog.Debug("onQueryRoleCb 未传递参数 ")
+		return
+	}
+	sendMsg := &protomsg.L2C_GetUserInfoRes{}
+	queryRole, pbOk := result.QueryObj.(*dbmodels.QueryRole)
+	clSession := session.ClientSessionMgr.GetConn(param.CltConn)
+	if !pbOk {
+		xlog.Debug("onQueryRoleCb  dbmodels.QueryRole erro")
+		clSession.WritePBMsgAndCode(Cmd.L2C_GetUserInfoRes, msgcode.UserNotFind, sendMsg)
+		return
+	}
+	if clSession == nil  {
+		xlog.Debug("onQueryRoleCb 玩家已离线")
+		return
+	}
+
+	sendMsg.RoleName = queryRole.RoleName
+	sendMsg.LoginTime = queryRole.LonginTime
+	sendMsg.OnlineTime = 0
+	sendMsg.RoomID = queryRole.RoomID
+	//内存中有数据直接返回
+	clSession.WritePBToMsgRes(Cmd.L2C_GetUserInfoRes, sendMsg)
 }
 
 //获取最近10分钟发送最频繁的消息
@@ -104,8 +173,25 @@ func C2L_PopularMsgReq(conn network.Conner, msgdata []byte) {
 	erro := proto.Unmarshal(msgdata, reqMsg)
 	if erro != nil {
 		xlog.Debug("C2L_PopularMsgReq 错误:" + erro.Error())
+		conn.Close()
 		return
 	}
+	sendMsg := &protomsg.L2C_PopularMsgRes{}
+	if RoomMgr.GetRoom(reqMsg.RoomID) == nil {
+		conn.WritePBMsgAndCode(Cmd.L2C_PopularMsgRes,msgcode.RoomNotFind, sendMsg)
+		return
+	}
+	nowMs := timeutil.GetCurrentTimeMs()
+	msgs :=	 RoomMgr.GetRoomMsgPro(reqMsg.RoomID)
+	if msgs != nil {
+		for _,msg := range msgs {
+			//最近10分钟发送最频繁的消息
+			if msg.CreateTime.GetVal() >= nowMs - 10 * 60 * 1000 {
+				sendMsg.PopMsg = append(sendMsg.PopMsg,msg.MsgContent.GetVal())
+			}
+		}
+	}
+	conn.WritePBToMsgRes(Cmd.L2C_PopularMsgRes,sendMsg)
 }
 
 //切换房间
@@ -119,7 +205,6 @@ func C2L_SwitchRoomReq(conn network.Conner, msgdata []byte) {
 	clSession := session.ClientSessionMgr.GetClientSession(conn.GetConnID())
 	//绑定对象已经离线
 	if clSession == nil || clSession.PRole == nil {
-		conn.Close()
 		return
 	}
 	//房间相同
@@ -139,10 +224,16 @@ func C2L_SwitchRoomReq(conn network.Conner, msgdata []byte) {
 	sendMsg.RoomID = reqMsg.RoomID
 	msgs :=	 RoomMgr.GetRoomMsgPro(reqMsg.RoomID)
 	if msgs != nil {
-		for _,msg := range msgs {
+		j := 0
+		i := len(msgs) - 1 //到着遍历最新50条
+		for  ;i >= 0 ; i -- {
 			msgPro := new(protomsg.MsgInfo)
-			msg.BuildPro(msgPro)
+			msgs[i].BuildPro(msgPro)
 			sendMsg.Msgs = append(sendMsg.Msgs,msgPro)
+			j ++
+			if j >= 50 {
+				break
+			}
 		}
 	}
 	conn.WritePBToMsgRes(Cmd.L2C_SwitchRoomRes,sendMsg)

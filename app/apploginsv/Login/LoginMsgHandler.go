@@ -276,8 +276,14 @@ func OnQueryRoleCb(result dbsys.DBErrorCode, param *dbsys.DBObjQueryParam) {
 	} else if result == dbsys.DBSQLERRO {
 		clSession.PConn.WritePBMsgAndCode(Cmd.L2C_LoginMsg, msgcode.Login_DBERRO, sendMsg)
 	} else if result == dbsys.DBSUCCESS {
+		//设置当前登录时间
+		pRole.LonginTime.SetVal(timeutil.GetCurrentTimeMs())
+		pRole.OffLineTime.SetVal(0)
 		//连接绑定角色
 		clSession.PRole = pRole
+		updateRole := new(dbsys.DBObjWriteParam)
+		updateRole.AddObjs(pRole)
+		dbsys.GameAccountDB.AsyncUpdateObj(updateRole, nil)
 		RoleMgr.AddRole(pRole)
 		RoomMgr.OnRoleEnter(param.ClientConnId,clSession.PRole)
 		pRole.BuildRolePro(sendMsg)

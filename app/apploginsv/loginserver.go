@@ -13,9 +13,11 @@ import (
 	"github.com/zjytra/MsgServer/app/apploginsv/RoomMgr"
 	"github.com/zjytra/MsgServer/app/apploginsv/session"
 	"github.com/zjytra/MsgServer/app/comm"
+	"github.com/zjytra/MsgServer/conf"
 	"github.com/zjytra/MsgServer/dbmodels"
 	"github.com/zjytra/MsgServer/devlop/xutil/timeutil"
 	"github.com/zjytra/MsgServer/engine_core/dbsys"
+	"github.com/zjytra/MsgServer/wordfilter"
 )
 
 
@@ -39,6 +41,7 @@ func (this *LoginServer)OnInit() bool{
 	AccountMgr.Init()
 	RoleMgr.Init()
 	RoomMgr.Init()
+	wordfilter.InitConfigFilter(conf.PathModelPtr.ConfPath)
 	this.InitDB()
 	dbsys.AsyncOpenRedis("zjy1")
 	comm.InitMsgVerify()
@@ -58,7 +61,7 @@ func (this *LoginServer)InitDB(){
 	dbsys.GameAccountDB.RegisterTable(dbmodels.RoleT{})
 	dbsys.GameAccountDB.RegisterTable(dbmodels.MsgT{})
 	dbsys.GameAccountDB.SyncBD()
-	dbsys.GameAccountDB.StartTimer()
+	//dbsys.GameAccountDB.StartTimer()
 	//加载所有的消息
 	loadAll := new(dbsys.DBObjQueryParam)
 	loadAll.DbObj = new(dbmodels.MsgT)

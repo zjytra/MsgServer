@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d9407669-3c19-4795-9968-7d35ebbfccfb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/serverconnmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AccountServer/accountsys/accountApi.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../AccountServer/accountsys/accountApi.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ResServer/go_build_main_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../ResServer/go_build_main_go.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/Cmd/Cmd.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/Cmd/Cmd.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/Test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/Test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appcenter/WorldGroup/WorldGroupMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appcenter/WorldGroup/WorldGroupMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appcenter/session/serversessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appcenter/session/serversessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appclient/Login/LoginMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appclient/Login/LoginMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appclient/MsgRouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appclient/MsgRouter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appclient/session/loginclientsessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appclient/session/loginclientsessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appclient/session/loginserversessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appclient/session/loginserversessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgame/WorldGroup/WorldGroupMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgame/WorldGroup/WorldGroupMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgame/session/serversessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgame/session/serversessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgate/Login/LoginMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgate/Login/LoginMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgate/gateserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgate/gateserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgate/session/clientsessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgate/session/clientsessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgate/session/gatesessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgate/session/gatesessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appgate/session/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appgate/session/session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/Login/LoginMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/Login/LoginMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/Login/msg_account_login.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/Login/msg_account_login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/MsgRouter.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/MsgRouter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/loginserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/loginserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/session/loginclientsessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/session/loginclientsessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/session/loginserversessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/session/loginserversessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/apploginsv/session/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/apploginsv/session/session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appmonitor/InnerServer/InnerServerMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appmonitor/InnerServer/InnerServerMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appmonitor/monitor.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appmonitor/monitor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appmonitor/session/monitorsessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appmonitor/session/monitorsessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appworld/WorldGroup/WorldGroupMsgHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appworld/WorldGroup/WorldGroupMsgHandler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appworld/session/serversessionmgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appworld/session/serversessionmgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/app/appworld/worldserver.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/app/appworld/worldserver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/cfgs/serverconf.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/cfgs/serverconf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/conf/conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/conf/conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/csv/DbCfg.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/csv/DbCfg.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/csv/NetWorkCfg.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/csv/NetWorkCfg.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/csvsys/csvdata/DbCfg.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/csvsys/csvdata/DbCfg.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/csvsys/csvdata/NetWorkCfg.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/csvsys/csvdata/NetWorkCfg.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/dbmodels/RoleT.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/dbmodels/RoleT.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/dbmodels/account_mgr.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/dbmodels/account_mgr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/devlop/xcontainer/vector/safevector.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/devlop/xcontainer/vector/safevector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/devlop/xcontainer/vector/vector.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/devlop/xcontainer/vector/vector.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/devlop/xutil/strutil/strutil.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/devlop/xutil/strutil/strutil.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/DBObjParam.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/DBObjParam.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/columninfo.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/columninfo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/dbSync.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/dbSync.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/dbTableTask.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/dbTableTask.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/dbstore.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/dbstore.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/mysqldb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/dbsys/mysqldb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/clientnet.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/clientnet.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/connect.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/connect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/conner.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/conner.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/http.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/http.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/serversessionmgr.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/service_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/service_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/service_conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/service_conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/service_tcp_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/service_tcp_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/sessionmgr.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/tcp_client.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/tcp_client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/tcp_conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/tcp_conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/network/tcp_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/network/tcp_server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/timingwheel/timingwheel_benchmark_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/engine_core/timingwheel/timingwheel_benchmark_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/engine_core/xengine/xbehavior.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/go_build_Gate.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/go_build_Gate.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/go_build_Monitor.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/go_build_Monitor.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/go_build_center.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/go_build_center.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/go_build_gameworld.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/go_build_gameworld.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/go_build_lgsv_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/go_build_lgsv_go.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/msgcode/msgcode.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/msgcode/msgcode.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/mysql-struct-maker.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/mysql-struct-maker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/protomsg/login.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/protomsg/login.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../wengo/wengoApp.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../wengo/wengoApp.exe" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/show.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="289sAIyL6G96gd4rhxPGTsbxaQ1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d9407669-3c19-4795-9968-7d35ebbfccfb" name="Default Changelist" comment="" />
+      <created>1650639992649</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650639992649</updated>
+      <workItem from="1650640013078" duration="736000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

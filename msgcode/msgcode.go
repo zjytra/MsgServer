@@ -46,4 +46,6 @@ const (
 	RoleCreateIng		          = 33 //
 	CreateRoleRedisError          = 34     // 创建角色redis错误
 	CreateRoleDBError             = 34     // 创建角色数据库错误
+	RoomNotFind		              = 35     // 房间未找到
+	UserNotFind		              = 36     // 玩家未找到
 )
